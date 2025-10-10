@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is hook for editor PyLine, which can be found here - [PyLine](https://github.com/Peter-L-SVK/PyLine)
+This is hook for editor PyLine, which can be found here - [PyLine](https://github.com/Peter-L-SVK/PyLine)  
 An AI-enhanced grammar checking hook for PyLine that uses advanced natural language processing with LanguageTool, pandas, and numpy for intelligent grammar and style suggestions.
 
 ## Features
