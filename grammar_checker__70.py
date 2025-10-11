@@ -289,7 +289,7 @@ class GrammarChecker:
         try:
             score = 206.835 - (1.015 * avg_sentence_length) - (84.6 * avg_syllables_per_word)
             return max(10.0, min(100.0, score))  # Reasonable bounds
-        except:
+        except (ValueError, ZeroDivisionError, TypeError):
             return 60.0  # Fallback score
 
     def check_grammar_advanced(self, text: str) -> List[Dict[str, Any]]:
@@ -450,6 +450,8 @@ class GrammarChecker:
             return self._fix_sentence_endings(matched_text, match)
         elif error_type == "statement_question_confusion":
             return self._fix_statement_question_confusion(matched_text, match)
+        elif error_type == "comma_splices":
+            return self._fix_comma_splices(matched_text, match)
         elif error_type == "subject_verb_agreement":
             return self._fix_subject_verb_agreement(matched_text, match)
         elif error_type == "their_there_theyre":
@@ -474,6 +476,16 @@ class GrammarChecker:
                 except Exception:
                     return str(suggestion_template)  # Ensure we return a string
             return matched_text  # Return original if no suggestion
+
+    def _fix_comma_splices(self, matched_text: str, match: re.Match[str]) -> str:
+        """Fix comma splices with proper sentence separation"""
+        groups = match.groups()
+        if len(groups) >= 3:
+            first_part = groups[0]
+            subject = groups[1]
+            verb_start = groups[2]
+            return f"{first_part}. {subject} {verb_start}"
+        return matched_text
 
     def _fix_missing_is(self, matched_text: str, match: re.Match[str]) -> str:
         """Intelligently fix missing 'is' with proper grammar"""
