@@ -2,7 +2,7 @@
 
 ## Overview
 
-An AI-enhanced grammar checking hook for PyLine that uses advanced natural language processing with LanguageTool, pandas, and numpy for intelligent grammar and style suggestions.
+An AI-enhanced grammar checking hook for PyLine (which can be found here, bundled together with this hook - [PyLine](https://github.com/Peter-L-SVK/PyLine)), that uses advanced natural language processing with LanguageTool, pandas, and numpy for intelligent grammar and style suggestions.
 
 ## Features
 
